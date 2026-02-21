@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --brand-dark: #0f172a;
+  --brand-anthracite: #1e293b;
+  --brand-accent: #0ea5e9;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-jakarta);
+  --font-heading: var(--font-merriweather);
+}
+
+* {
+  border-color: #e2e8f0;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 280px, #ffffff 100%);
+  color: var(--foreground);
+  font-family: var(--font-jakarta), "Segoe UI", sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20% -10%;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 35% at 20% 20%, rgba(14, 165, 233, 0.12), transparent 70%),
+    radial-gradient(35% 35% at 80% 12%, rgba(30, 41, 59, 0.12), transparent 72%),
+    radial-gradient(38% 32% at 60% 78%, rgba(56, 189, 248, 0.1), transparent 70%);
+  filter: blur(4px);
+  animation: ambientShift 16s ease-in-out infinite alternate;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-merriweather), Georgia, serif;
+}
+
+.page-shell {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+@keyframes ambientShift {
+  0% {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(1.5%, 1.5%, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(2%, -1%, 0) scale(1.02);
+  }
+}
+
+@keyframes heroCrossfade {
+  0%,
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  25%,
+  95% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes revealUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-slide {
+  opacity: 0;
+  animation-name: heroCrossfade;
+  animation-duration: 24s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.hero-slide-1 {
+  animation-delay: 0s;
+}
+
+.hero-slide-2 {
+  animation-delay: 6s;
+}
+
+.hero-slide-3 {
+  animation-delay: 12s;
+}
+
+.hero-slide-4 {
+  animation-delay: 18s;
+}
+
+.reveal-up {
+  opacity: 0;
+  animation: revealUp 700ms ease-out forwards;
+}
+
+.reveal-delay-1 {
+  animation-delay: 120ms;
+}
+
+.reveal-delay-2 {
+  animation-delay: 220ms;
+}
+
+.reveal-delay-3 {
+  animation-delay: 320ms;
+}
