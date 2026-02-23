@@ -4,14 +4,13 @@ import { notFound } from "next/navigation";
 
 import { buttonVariants } from "@/components/ui/button";
 import { projectFallbackPhoto } from "@/lib/constants";
-import { hasDatabaseUrl } from "@/lib/database";
 import { getLocale } from "@/lib/i18n-server";
 import { isItalian } from "@/lib/i18n";
 import { createMetadata } from "@/lib/metadata";
-import { prisma } from "@/lib/prisma";
+import { getPortfolioProjectById, getPortfolioProjectIds } from "@/lib/portfolio-gallery";
 import { formatDate } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
 type ProjectDetailPageProps = {
   params: {
@@ -22,28 +21,7 @@ type ProjectDetailPageProps = {
 export async function generateMetadata({ params }: ProjectDetailPageProps) {
   const locale = await getLocale();
   const italian = isItalian(locale);
-  if (!hasDatabaseUrl()) {
-    return createMetadata({
-      title: italian ? "Portfolio non disponibile" : "Portfolio unavailable",
-      description: italian
-        ? "Configura DATABASE_URL per visualizzare il dettaglio progetto."
-        : "Configure DATABASE_URL to view project details.",
-      path: `/portfolio/${params.id}`,
-    });
-  }
-
-  let project: Awaited<ReturnType<typeof prisma.project.findUnique>> = null;
-  try {
-    project = await prisma.project.findUnique({ where: { id: params.id } });
-  } catch {
-    return createMetadata({
-      title: italian ? "Portfolio non disponibile" : "Portfolio unavailable",
-      description: italian
-        ? "Connessione database non disponibile al momento."
-        : "Database connection is currently unavailable.",
-      path: `/portfolio/${params.id}`,
-    });
-  }
+  const project = getPortfolioProjectById(params.id, locale);
 
   if (!project) {
     return createMetadata({
@@ -60,57 +38,14 @@ export async function generateMetadata({ params }: ProjectDetailPageProps) {
   });
 }
 
+export function generateStaticParams() {
+  return getPortfolioProjectIds().map((id) => ({ id }));
+}
+
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const locale = await getLocale();
   const italian = isItalian(locale);
-  if (!hasDatabaseUrl()) {
-    return (
-      <main className="page-shell py-14">
-        <section className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center">
-          <h1 className="text-3xl font-bold text-slate-900">
-            {italian ? "Portfolio temporaneamente non disponibile" : "Portfolio temporarily unavailable"}
-          </h1>
-          <p className="mt-2 text-slate-600">
-            {italian
-              ? "Configura la variabile DATABASE_URL nel file .env per abilitare i dettagli progetto."
-              : "Configure the DATABASE_URL variable in your .env file to enable project details."}
-          </p>
-          <div className="mt-6">
-            <Link href="/portfolio" className={buttonVariants({ variant: "outline" })}>
-              {italian ? "Torna al Portfolio" : "Back to Portfolio"}
-            </Link>
-          </div>
-        </section>
-      </main>
-    );
-  }
-
-  let project: Awaited<ReturnType<typeof prisma.project.findUnique>> = null;
-  try {
-    project = await prisma.project.findUnique({
-      where: { id: params.id },
-    });
-  } catch {
-    return (
-      <main className="page-shell py-14">
-        <section className="rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center">
-          <h1 className="text-3xl font-bold text-slate-900">
-            {italian ? "Errore di connessione database" : "Database connection error"}
-          </h1>
-          <p className="mt-2 text-slate-600">
-            {italian
-              ? "Impossibile caricare il progetto in questo momento."
-              : "Unable to load this project at the moment."}
-          </p>
-          <div className="mt-6">
-            <Link href="/portfolio" className={buttonVariants({ variant: "outline" })}>
-              {italian ? "Torna al Portfolio" : "Back to Portfolio"}
-            </Link>
-          </div>
-        </section>
-      </main>
-    );
-  }
+  const project = getPortfolioProjectById(params.id, locale);
 
   if (!project) {
     notFound();
@@ -123,9 +58,18 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
         <p className="text-slate-600">
           {project.location} - {project.type}
         </p>
-        <p className="text-sm text-slate-500">
-          {italian ? "Pubblicato il" : "Published on"} {formatDate(project.createdAt)}
-        </p>
+        {italian ? (
+          <p className="text-sm text-slate-500">Pubblicato il {formatDate(project.createdAt)}</p>
+        ) : (
+          <p className="text-sm text-slate-500">
+            Published on{" "}
+            {new Intl.DateTimeFormat("en-GB", {
+              day: "2-digit",
+              month: "long",
+              year: "numeric",
+            }).format(project.createdAt)}
+          </p>
+        )}
       </header>
 
       <section className="mt-8 grid gap-4 md:grid-cols-2">

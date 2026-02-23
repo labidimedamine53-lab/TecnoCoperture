@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { prisma } from "@/lib/prisma";
+import { getPortfolioProjectIds } from "@/lib/portfolio-gallery";
 
 const staticRoutes = [
   "",
@@ -22,27 +22,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === "" ? 1 : 0.8,
   }));
 
-  if (!process.env.DATABASE_URL) {
-    return staticEntries;
-  }
+  const projectEntries: MetadataRoute.Sitemap = getPortfolioProjectIds().map((id) => ({
+    url: `${baseUrl}/portfolio/${id}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
 
-  try {
-    const projects = await prisma.project.findMany({
-      select: {
-        id: true,
-        updatedAt: true,
-      },
-    });
-
-    const projectEntries: MetadataRoute.Sitemap = projects.map((project) => ({
-      url: `${baseUrl}/portfolio/${project.id}`,
-      lastModified: project.updatedAt,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    }));
-
-    return [...staticEntries, ...projectEntries];
-  } catch {
-    return staticEntries;
-  }
+  return [...staticEntries, ...projectEntries];
 }

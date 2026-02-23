@@ -1,8 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 
-import { siteConfig } from "@/lib/constants";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { buttonVariants } from "@/components/ui/button";
+import logo from "@/assets/Logo.png";
 import { isItalian, type Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -22,9 +23,14 @@ export function Navbar({ locale }: NavbarProps) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/20 bg-slate-950/90 backdrop-blur supports-[backdrop-filter]:bg-slate-950/75">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/" className="text-lg font-bold tracking-wide text-white">
-          {siteConfig.name}
+      <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="inline-flex items-center">
+          <Image
+            src={logo}
+            alt="Tecnocoperture logo"
+            priority
+            className="h-12 w-auto sm:h-26  transition-transform hover:scale-105"
+          />
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">

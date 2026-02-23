@@ -1,21 +1,10 @@
-import Link from "next/link";
-
 import { ProjectCard } from "@/components/project-card";
-import { buttonVariants } from "@/components/ui/button";
-import { hasDatabaseUrl } from "@/lib/database";
 import { getLocale } from "@/lib/i18n-server";
 import { isItalian } from "@/lib/i18n";
 import { createMetadata } from "@/lib/metadata";
-import { prisma } from "@/lib/prisma";
-import { cn } from "@/lib/utils";
+import { getPortfolioGallery } from "@/lib/portfolio-gallery";
 
-export const dynamic = "force-dynamic";
-
-type PortfolioPageProps = {
-  searchParams?: {
-    type?: string;
-  };
-};
+export const dynamic = "force-static";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -31,33 +20,10 @@ export async function generateMetadata() {
   });
 }
 
-export default async function PortfolioPage({ searchParams }: PortfolioPageProps) {
+export default async function PortfolioPage() {
   const locale = await getLocale();
   const italian = isItalian(locale);
-  const selectedType = searchParams?.type?.trim();
-  const canUseDatabase = hasDatabaseUrl();
-
-  let projects: Awaited<ReturnType<typeof prisma.project.findMany>> = [];
-  let availableTypes: { type: string }[] = [];
-  let databaseError = false;
-
-  if (canUseDatabase) {
-    try {
-      [projects, availableTypes] = await Promise.all([
-        prisma.project.findMany({
-          where: selectedType ? { type: selectedType } : undefined,
-          orderBy: { createdAt: "desc" },
-        }),
-        prisma.project.findMany({
-          select: { type: true },
-          distinct: ["type"],
-          orderBy: { type: "asc" },
-        }),
-      ]);
-    } catch {
-      databaseError = true;
-    }
-  }
+  const projects = getPortfolioGallery(locale);
 
   return (
     <main className="page-shell py-14">
@@ -137,32 +103,6 @@ export default async function PortfolioPage({ searchParams }: PortfolioPageProps
         </div>
       </section>
 
-      {canUseDatabase && !databaseError ? (
-        <section className="mt-8 flex flex-wrap gap-2">
-          <Link
-            href="/portfolio"
-            className={cn(
-              buttonVariants({ variant: "outline", size: "sm" }),
-              !selectedType && "border-sky-300 bg-sky-50 text-sky-700",
-            )}
-          >
-            {italian ? "Tutti" : "All"}
-          </Link>
-          {availableTypes.map((entry) => (
-            <Link
-              key={entry.type}
-              href={`/portfolio?type=${encodeURIComponent(entry.type)}`}
-              className={cn(
-                buttonVariants({ variant: "outline", size: "sm" }),
-                selectedType === entry.type && "border-sky-300 bg-sky-50 text-sky-700",
-              )}
-            >
-              {entry.type}
-            </Link>
-          ))}
-        </section>
-      ) : null}
-
       {projects.length ? (
         <section className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project) => (
@@ -180,29 +120,14 @@ export default async function PortfolioPage({ searchParams }: PortfolioPageProps
         </section>
       ) : (
         <section className="mt-10 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center">
-          {canUseDatabase && !databaseError ? (
-            <>
-              <h2 className="text-2xl font-bold text-slate-900">
-                {italian ? "Nessun progetto disponibile" : "No projects available"}
-              </h2>
-              <p className="mt-2 text-slate-600">
-                {italian
-                  ? "Nessun progetto corrisponde al filtro selezionato. Prova una categoria diversa."
-                  : "No projects match the selected filter. Try another category."}
-              </p>
-            </>
-          ) : (
-            <>
-              <h2 className="text-2xl font-bold text-slate-900">
-                {italian ? "Portfolio temporaneamente non disponibile" : "Portfolio temporarily unavailable"}
-              </h2>
-              <p className="mt-2 text-slate-600">
-                {italian
-                  ? "Configura la variabile DATABASE_URL nel file .env per abilitare il portfolio."
-                  : "Configure the DATABASE_URL variable in your .env file to enable portfolio data."}
-              </p>
-            </>
-          )}
+          <h2 className="text-2xl font-bold text-slate-900">
+            {italian ? "Nessun progetto disponibile" : "No projects available"}
+          </h2>
+          <p className="mt-2 text-slate-600">
+            {italian
+              ? "La galleria verra aggiornata presto con nuovi interventi."
+              : "The gallery will be updated soon with new projects."}
+          </p>
         </section>
       )}
     </main>
