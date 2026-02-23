@@ -1,7 +1,3 @@
-"use client";
-
-import { usePathname } from "next/navigation";
-
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { StickyQuoteButton } from "@/components/sticky-quote-button";
@@ -10,13 +6,12 @@ import type { Locale } from "@/lib/i18n";
 
 type SiteShellProps = {
   locale: Locale;
+  currentYear: number;
+  isAdminPath: boolean;
   children: React.ReactNode;
 };
 
-export function SiteShell({ locale, children }: SiteShellProps) {
-  const pathname = usePathname();
-  const isAdminPath = pathname.startsWith("/admin");
-
+export function SiteShell({ locale, currentYear, isAdminPath, children }: SiteShellProps) {
   if (isAdminPath) {
     return <>{children}</>;
   }
@@ -25,7 +20,7 @@ export function SiteShell({ locale, children }: SiteShellProps) {
     <>
       <Navbar locale={locale} />
       {children}
-      <Footer locale={locale} />
+      <Footer locale={locale} currentYear={currentYear} />
       <WhatsAppFloatingButton locale={locale} />
       <StickyQuoteButton locale={locale} />
     </>

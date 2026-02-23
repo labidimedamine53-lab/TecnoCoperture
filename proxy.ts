@@ -15,7 +15,14 @@ export default auth((request) => {
     return NextResponse.redirect(new URL("/admin/dashboard", request.nextUrl));
   }
 
-  return NextResponse.next();
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-admin-path", "1");
+
+  return NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
 });
 
 export const config = {

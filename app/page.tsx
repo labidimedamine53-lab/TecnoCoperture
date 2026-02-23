@@ -1,13 +1,11 @@
 import Link from "next/link";
 
-import { CoverageCard } from "@/components/coverage-card";
 import { CTASection } from "@/components/cta-section";
 import { Hero } from "@/components/hero";
 import { LocationSection } from "@/components/location-section";
 import { ServiceCard } from "@/components/service-card";
 import { buttonVariants } from "@/components/ui/button";
 import {
-  getRoofingTypes,
   getServiceCategories,
   getSiteDescription,
   getTestimonials,
@@ -34,7 +32,6 @@ export default async function HomePage() {
   const locale = await getLocale();
   const italian = isItalian(locale);
   const highlightedServices = getServiceCategories(locale).slice(0, 6);
-  const highlightedCoverage = getRoofingTypes(locale).slice(0, 4);
   const testimonials = getTestimonials(locale);
   const whyChooseUs = getWhyChooseUs(locale);
 
@@ -69,30 +66,6 @@ export default async function HomePage() {
               />
             </div>
           ))}
-        </div>
-      </section>
-
-      <section className="bg-slate-50 py-16">
-        <div className="page-shell">
-          <h2 className="reveal-up text-3xl font-bold text-slate-900">
-            {italian ? "Tipi di copertura trattati" : "Roof Types We Handle"}
-          </h2>
-          <p className="reveal-up reveal-delay-1 mt-2 max-w-2xl text-slate-600">
-            {italian
-              ? "Soluzioni su misura per case private, condomini, strutture commerciali e capannoni."
-              : "Tailored solutions for private homes, condominiums, commercial buildings and industrial facilities."}
-          </p>
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {highlightedCoverage.map((coverage) => (
-              <div key={coverage.name} className="reveal-up reveal-delay-2">
-                <CoverageCard
-                  title={coverage.name}
-                  description={coverage.description}
-                  benefits={coverage.benefits}
-                />
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

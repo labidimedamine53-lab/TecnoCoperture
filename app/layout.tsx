@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Merriweather, Plus_Jakarta_Sans } from "next/font/google";
 
 import { SiteShell } from "@/components/site-shell";
@@ -37,12 +38,17 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = await getLocale();
+  const headerStore = await headers();
+  const isAdminPath = headerStore.get("x-admin-path") === "1";
+  const currentYear = new Date().getFullYear();
 
   return (
     <html lang={locale}>
       <body className={`${jakartaSans.variable} ${merriweather.variable} antialiased`}>
         <div className="min-h-screen bg-white text-slate-900">
-          <SiteShell locale={locale}>{children}</SiteShell>
+          <SiteShell locale={locale} currentYear={currentYear} isAdminPath={isAdminPath}>
+            {children}
+          </SiteShell>
         </div>
       </body>
     </html>

@@ -5,11 +5,11 @@ import { isItalian, type Locale } from "@/lib/i18n";
 
 type FooterProps = {
   locale: Locale;
+  currentYear: number;
 };
 
-export function Footer({ locale }: FooterProps) {
+export function Footer({ locale, currentYear }: FooterProps) {
   const italian = isItalian(locale);
-  const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-slate-200 bg-white">
@@ -65,7 +65,7 @@ export function Footer({ locale }: FooterProps) {
       </div>
 
       <div className="border-t border-slate-200 py-4 text-center text-xs text-slate-500">
-        {year} {siteConfig.legalName}.{" "}
+        {currentYear} {siteConfig.legalName}.{" "}
         {italian ? "Tutti i diritti riservati." : "All rights reserved."}
       </div>
     </footer>
