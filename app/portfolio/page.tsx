@@ -27,7 +27,7 @@ export default async function PortfolioPage() {
 
   return (
     <main className="page-shell py-14">
-      <header className="reveal-up max-w-3xl space-y-3">
+      <header className="reveal-up max-w-3xl space-y-3 text-center md:text-left">
         <h1 className="text-4xl font-bold text-slate-900">
           {italian ? "Portfolio Progetti" : "Project Portfolio"}
         </h1>

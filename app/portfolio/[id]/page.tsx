@@ -53,7 +53,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
 
   return (
     <main className="page-shell py-14">
-      <header className="max-w-4xl space-y-3">
+      <header className="max-w-4xl space-y-3 text-center md:text-left">
         <h1 className="text-4xl font-bold text-slate-900">{project.title}</h1>
         <p className="text-slate-600">
           {project.location} - {project.type}
@@ -98,13 +98,13 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
       </section>
 
       <section className="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 className="text-2xl font-bold text-slate-900">
+        <h2 className="text-center text-2xl font-bold text-slate-900 md:text-left">
           {italian ? "Dettagli intervento" : "Project Details"}
         </h2>
-        <p className="mt-3 whitespace-pre-line text-slate-700">{project.description}</p>
+        <p className="mt-3 whitespace-pre-line text-center text-slate-700 md:text-left">{project.description}</p>
       </section>
 
-      <div className="mt-8">
+      <div className="mt-8 text-center md:text-left">
         <Link href="/portfolio" className={buttonVariants({ variant: "outline" })}>
           {italian ? "Torna al Portfolio" : "Back to Portfolio"}
         </Link>

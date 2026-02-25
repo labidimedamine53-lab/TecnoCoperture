@@ -31,10 +31,10 @@ export const siteConfig = {
 };
 
 export const assetPhotos = [
-  "/images/assets/roofing-1.jpeg",
-  "/images/assets/roofing-2.jpeg",
-  "/images/assets/roofing-3.jpeg",
-  "/images/assets/roofing-4.jpeg",
+  "/images/assets/1.png",
+  "/images/assets/2.png",
+  "/images/assets/3.png",
+  "/images/assets/4.png",
 ] as const;
 
 export const heroPhoto = assetPhotos[0];
@@ -242,7 +242,7 @@ const roofingTypesIt = [
     benefits: ["Ottimo drenaggio", "Lunga durata", "Facile manutenzione"],
   },
   {
-    name: "Tetto piano",
+    name: "Tetto Piano",
     description: "Soluzione moderna ideale per edifici residenziali contemporanei e capannoni.",
     benefits: ["Superficie sfruttabile", "Impianti tecnici integrabili", "Design minimal"],
   },

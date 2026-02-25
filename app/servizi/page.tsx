@@ -25,7 +25,7 @@ export default async function ServiziPage() {
 
   return (
     <main className="page-shell py-14">
-      <header className="reveal-up max-w-3xl space-y-3">
+      <header className="reveal-up max-w-3xl space-y-3 text-center md:text-left">
         <h1 className="text-4xl font-bold text-slate-900">
           {italian ? "Servizi su Coperture Tetti" : "Roofing Services"}
         </h1>
@@ -43,7 +43,6 @@ export default async function ServiziPage() {
               title={service.name}
               description={service.description}
               items={service.includedWorks}
-              locale={locale}
             />
           </div>
         ))}
