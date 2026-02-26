@@ -93,10 +93,10 @@ export function Hero({ locale }: HeroProps) {
           </p>
           <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
             <Link href="/contatti" className={buttonVariants({ size: "lg" })}>
-              {italian ? "Richiedi Preventivo" : "Request a Quote"}
+              {italian ? "Richiedi una consulenza" : "Request a Consultation"}
             </Link>
             <Link
-              href="/servizi"
+              href="/coperture"
               className={cn(
                 buttonVariants({
                   variant: "outline",

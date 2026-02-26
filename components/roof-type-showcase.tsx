@@ -99,7 +99,7 @@ export function RoofTypeShowcase({ items, italian }: RoofTypeShowcaseProps) {
           </div>
             <div className="mt-4 flex justify-center">
               <Link href="/contatti" className={buttonVariants({ size: "lg" })}>
-                {italian ? "Richiedi Preventivo" : "Request a Quote"}
+                {italian ? "Richiedi una consulenza" : "Request a Consultation"}
               </Link>
             </div>
           </div>

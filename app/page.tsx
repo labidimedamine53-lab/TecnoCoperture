@@ -116,8 +116,8 @@ export default async function HomePage() {
         title={italian ? "Hai bisogno di un intervento su misura?" : "Need a custom roofing solution?"}
         description={
           italian
-            ? "Raccontaci il tuo progetto: analizziamo la copertura e ti inviamo un preventivo dettagliato senza impegno."
-            : "Tell us about your project: we analyze your roof and provide a detailed, no-obligation quote."
+            ? "Raccontaci il tuo progetto: analizziamo la copertura e ti inviamo una proposta dettagliata senza impegno."
+            : "Tell us about your project: we analyze your roof and provide a detailed, no-obligation proposal."
         }
         locale={locale}
       />

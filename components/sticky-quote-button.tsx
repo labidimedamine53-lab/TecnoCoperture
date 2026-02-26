@@ -19,7 +19,7 @@ export function StickyQuoteButton({ locale }: StickyQuoteButtonProps) {
           "w-full motion-safe:animate-[floatY_3.8s_ease-in-out_infinite]",
         )}
       >
-        {italian ? "Richiedi Preventivo" : "Request a Quote"}
+        {italian ? "Richiedi una consulenza" : "Request a Consultation"}
       </Link>
     </div>
   );

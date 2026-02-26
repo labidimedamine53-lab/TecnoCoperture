@@ -355,14 +355,14 @@ const whyChooseUsIt = [
   "Sopralluoghi rapidi in tutta Italia",
   "Tecnici qualificati e certificati per lavori in quota",
   "Materiali garantiti e fornitori selezionati",
-  "Preventivi chiari con tempi certi di consegna",
+  "Proposte chiare con tempi certi di consegna",
 ] as const;
 
 const whyChooseUsEn = [
   "Fast on-site inspections across Italy",
   "Qualified and certified technicians for work at height",
   "Guaranteed materials and selected suppliers",
-  "Clear quotes with reliable delivery times",
+  "Clear proposals with reliable delivery times",
 ] as const;
 
 const testimonialsIt = [

@@ -244,12 +244,12 @@ export default function ServicesSection() {
           <h3 className="text-2xl font-bold text-slate-900">
             Hai bisogno di un intervento sul tuo tetto?
           </h3>
-          <p className="mt-2 text-slate-600">Preventivo gratuito e sopralluogo rapido</p>
+          <p className="mt-2 text-slate-600">Consulenza gratuita e sopralluogo rapido</p>
           <Link
             href="/contatti"
             className="mt-6 inline-flex h-11 items-center justify-center rounded-xl border border-sky-400/40 bg-[linear-gradient(135deg,#0ea5e9_0%,#06b6d4_50%,#0ea5e9_100%)] px-7 text-sm font-semibold text-white shadow-[0_16px_34px_-16px_rgba(14,165,233,0.9)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2"
           >
-            Richiedi preventivo
+            Richiedi una consulenza
           </Link>
         </motion.div>
       </div>

@@ -16,8 +16,8 @@ export async function generateMetadata() {
   return createMetadata({
     title: italian ? "Dashboard Admin" : "Admin Dashboard",
     description: italian
-      ? "Panoramica richieste preventivo e portfolio progetti."
-      : "Overview of quote requests and portfolio projects.",
+      ? "Panoramica richieste di consulenza e portfolio progetti."
+      : "Overview of consultation requests and portfolio projects.",
     path: "/admin/dashboard",
   });
 }
@@ -43,15 +43,15 @@ export default async function AdminDashboardPage() {
           <h1 className="text-3xl font-bold text-slate-900">Dashboard</h1>
           <p className="mt-1 text-sm text-slate-600">
             {italian
-              ? "Panoramica operativa di richieste preventivo e progetti pubblicati."
-              : "Operational overview of quote requests and published projects."}
+              ? "Panoramica operativa di richieste di consulenza e progetti pubblicati."
+              : "Operational overview of consultation requests and published projects."}
           </p>
         </header>
 
         <section className="grid gap-4 sm:grid-cols-2">
           <article className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
             <p className="text-sm text-slate-500">
-              {italian ? "Richieste preventivo" : "Quote requests"}
+              {italian ? "Richieste di consulenza" : "Consultation requests"}
             </p>
             <p className="mt-2 text-3xl font-bold text-slate-900">{requestsCount}</p>
             <Link href="/admin/requests" className={buttonVariants({ variant: "outline", size: "sm", className: "mt-4" })}>

@@ -28,7 +28,7 @@ export default async function PrivacyPolicyPage() {
           <>
             <p>
               Questa informativa descrive come {siteConfig.legalName} tratta i dati personali raccolti
-              tramite il sito web e i moduli di richiesta preventivo.
+              tramite il sito web e i moduli di richiesta consulenza.
             </p>
             <h2>1. Titolare del trattamento</h2>
             <p>
@@ -43,7 +43,7 @@ export default async function PrivacyPolicyPage() {
             </p>
             <h2>3. Finalita</h2>
             <p>
-              I dati sono trattati esclusivamente per rispondere alle richieste di preventivo, fornire
+              I dati sono trattati esclusivamente per rispondere alle richieste di consulenza, fornire
               assistenza tecnica e adempiere agli obblighi di legge.
             </p>
             <h2>4. Base giuridica</h2>
@@ -66,7 +66,7 @@ export default async function PrivacyPolicyPage() {
           <>
             <p>
               This policy explains how {siteConfig.legalName} processes personal data collected through
-              the website and quote request forms.
+              the website and consultation request forms.
             </p>
             <h2>1. Data controller</h2>
             <p>
@@ -79,7 +79,7 @@ export default async function PrivacyPolicyPage() {
             </p>
             <h2>3. Purpose</h2>
             <p>
-              Data is processed only to respond to quote requests, provide technical support, and comply
+              Data is processed only to respond to consultation requests, provide technical support, and comply
               with legal obligations.
             </p>
             <h2>4. Legal basis</h2>

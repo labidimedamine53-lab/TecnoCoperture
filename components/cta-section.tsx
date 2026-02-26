@@ -20,7 +20,7 @@ export function CTASection({ title, description, locale }: CTASectionProps) {
         <p className="mx-auto mt-4 max-w-2xl text-slate-200">{description}</p>
         <div className="mt-8">
           <Link href="/contatti" className={buttonVariants({ size: "lg" })}>
-            {italian ? "Richiedi Preventivo" : "Request a Quote"}
+            {italian ? "Richiedi una consulenza" : "Request a Consultation"}
           </Link>
         </div>
       </div>

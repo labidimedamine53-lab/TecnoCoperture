@@ -10,10 +10,10 @@ export async function generateMetadata() {
   const italian = isItalian(locale);
 
   return createMetadata({
-    title: italian ? "Contatti e Richiesta Preventivo" : "Contact and Quote Request",
+    title: italian ? "Contatti e Richiesta Consulenza" : "Contact and Consultation Request",
     description: italian
-      ? "Richiedi ora un preventivo per coperture tetti, rifacimento tetto e coperture industriali. Invia foto e dettagli del tuo intervento."
-      : "Request a quote for roofing, roof renovation and industrial roofing. Send photos and project details.",
+      ? "Richiedi ora una consulenza per coperture tetti, rifacimento tetto e coperture industriali. Invia foto e dettagli del tuo intervento."
+      : "Request a consultation for roofing, roof renovation and industrial roofing. Send photos and project details.",
     path: "/contatti",
     keywords: ["preventivo coperture tetti", "richiesta rifacimento tetto", "contatti coperture industriali"],
   });
@@ -27,7 +27,7 @@ export default async function ContattiPage() {
     <main className="page-shell py-14">
       <header className="reveal-up max-w-3xl space-y-3">
         <h1 className="text-4xl font-bold text-slate-900">
-          {italian ? "Contatti e Preventivi" : "Contact and Quotes"}
+          {italian ? "Contatti e Consulenza" : "Contact and Consultation"}
         </h1>
         <p className="text-slate-600">
           {italian

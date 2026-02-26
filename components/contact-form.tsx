@@ -93,7 +93,7 @@ export function ContactForm({ locale }: ContactFormProps) {
   return (
     <Card className="border-slate-200 shadow-xl">
       <CardHeader>
-        <CardTitle>{italian ? "Richiedi Preventivo" : "Request a Quote"}</CardTitle>
+        <CardTitle>{italian ? "Richiedi una consulenza" : "Request a Consultation"}</CardTitle>
       </CardHeader>
       <CardContent>
         <form className="space-y-5" onSubmit={handleSubmit(onSubmit)} noValidate>

@@ -83,7 +83,7 @@ export function Navbar({ locale }: NavbarProps) {
               href="/contatti"
               className={cn(buttonVariants(), "hidden h-11 px-5 text-base md:inline-flex")}
             >
-              {italian ? "Richiedi Preventivo" : "Request a Quote"}
+              {italian ? "Richiedi una consulenza" : "Request a Consultation"}
             </Link>
           </div>
         </div>
