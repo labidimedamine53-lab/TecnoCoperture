@@ -16,7 +16,6 @@ export function Navbar({ locale }: NavbarProps) {
   const italian = isItalian(locale);
   const navLinks = [
     { href: "/", label: italian ? "Home" : "Home" },
-    { href: "/servizi", label: italian ? "Servizi" : "Services" },
     { href: "/coperture", label: italian ? "Coperture" : "Roof Types" },
     { href: "/portfolio", label: italian ? "Portfolio" : "Portfolio" },
     { href: "/contatti", label: italian ? "Contatti" : "Contact" },
