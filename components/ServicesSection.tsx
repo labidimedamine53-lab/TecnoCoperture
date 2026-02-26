@@ -81,6 +81,9 @@ const services: Service[] = [
   },
 ];
 
+const EASE_STANDARD = [0.22, 1, 0.36, 1] as const;
+const EASE_EXIT = [0.4, 0, 0.2, 1] as const;
+
 const containerVariants = {
   hidden: {},
   visible: {
@@ -98,7 +101,7 @@ const cardVariants = {
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
+      ease: EASE_STANDARD,
     },
   },
 };
@@ -110,7 +113,7 @@ const pointVariants = {
     y: 0,
     transition: {
       duration: 0.35,
-      ease: [0.22, 1, 0.36, 1],
+      ease: EASE_STANDARD,
     },
   },
 };
@@ -126,7 +129,7 @@ export default function ServicesSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.5, ease: EASE_STANDARD }}
           className="mx-auto mb-10 max-w-3xl text-center"
         >
           <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">I nostri servizi principali</h2>
@@ -165,14 +168,14 @@ export default function ServicesSection() {
                     ? "0 26px 50px -28px rgba(15, 23, 42, 0.45)"
                     : "0 12px 28px -24px rgba(15, 23, 42, 0.32)",
                 }}
-                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.45, ease: EASE_STANDARD }}
                 className="group relative w-full overflow-hidden rounded-xl border border-slate-200 bg-white p-6 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2"
               >
                 <motion.span
                   aria-hidden
                   className="pointer-events-none absolute inset-x-0 top-0 h-1 origin-left bg-gradient-to-r from-sky-500 via-cyan-400 to-sky-600"
                   animate={{ scaleX: isOpen ? 1 : 0.3, opacity: isOpen ? 1 : 0.75 }}
-                  transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.45, ease: EASE_STANDARD }}
                 />
 
                 <div className="flex items-start gap-4">
@@ -195,7 +198,7 @@ export default function ServicesSection() {
                         opacity: 1,
                         transition: {
                           duration: 0.45,
-                          ease: [0.22, 1, 0.36, 1],
+                          ease: EASE_STANDARD,
                           when: "beforeChildren",
                           staggerChildren: 0.06,
                         },
@@ -205,7 +208,7 @@ export default function ServicesSection() {
                         opacity: 0,
                         transition: {
                           duration: 0.3,
-                          ease: [0.4, 0, 0.2, 1],
+                          ease: EASE_EXIT,
                           when: "afterChildren",
                           staggerChildren: 0.03,
                           staggerDirection: -1,
@@ -238,7 +241,7 @@ export default function ServicesSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
+          transition={{ duration: 0.55, ease: EASE_STANDARD, delay: 0.08 }}
           className="mx-auto mt-12 max-w-3xl rounded-2xl border border-sky-100 bg-gradient-to-br from-white via-slate-50 to-sky-50 p-8 text-center shadow-[0_24px_50px_-28px_rgba(14,165,233,0.35)]"
         >
           <h3 className="text-2xl font-bold text-slate-900">

@@ -15,10 +15,10 @@ export async function generateMetadata() {
   const italian = isItalian(locale);
 
   return createMetadata({
-    title: italian ? "Gestione Richieste Preventivo" : "Quote Requests Management",
+    title: italian ? "Gestione Richieste Consulenza" : "Consultation Requests Management",
     description: italian
-      ? "Elenco richieste preventivo ricevute dal sito."
-      : "List of quote requests received from the website.",
+      ? "Elenco richieste di consulenza ricevute dal sito."
+      : "List of consultation requests received from the website.",
     path: "/admin/requests",
   });
 }
@@ -37,7 +37,7 @@ export default async function AdminRequestsPage() {
       <div className="space-y-6">
         <header>
           <h1 className="text-3xl font-bold text-slate-900">
-            {italian ? "Richieste Preventivo" : "Quote Requests"}
+            {italian ? "Richieste Consulenza" : "Consultation Requests"}
           </h1>
           <p className="mt-1 text-sm text-slate-600">
             {italian

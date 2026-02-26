@@ -47,7 +47,7 @@ export async function sendQuoteNotification(payload: QuoteNotificationPayload) {
   await transporter.sendMail({
     from: process.env.SMTP_FROM ?? process.env.SMTP_USER,
     to: process.env.QUOTE_NOTIFICATION_EMAIL,
-    subject: `Nuova richiesta preventivo - ${payload.serviceType}`,
+    subject: `Nuova richiesta consulenza - ${payload.serviceType}`,
     text: [
       `ID richiesta: ${payload.id}`,
       `Nome: ${payload.name}`,

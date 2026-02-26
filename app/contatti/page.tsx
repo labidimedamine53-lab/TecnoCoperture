@@ -15,7 +15,7 @@ export async function generateMetadata() {
       ? "Richiedi ora una consulenza per coperture tetti, rifacimento tetto e coperture industriali. Invia foto e dettagli del tuo intervento."
       : "Request a consultation for roofing, roof renovation and industrial roofing. Send photos and project details.",
     path: "/contatti",
-    keywords: ["preventivo coperture tetti", "richiesta rifacimento tetto", "contatti coperture industriali"],
+    keywords: ["consulenza coperture tetti", "richiesta rifacimento tetto", "contatti coperture industriali"],
   });
 }
 
