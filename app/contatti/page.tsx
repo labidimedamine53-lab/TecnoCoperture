@@ -50,11 +50,11 @@ export default async function ContattiPage() {
           </p>
           <ul className="space-y-2 text-sm text-slate-700">
             <li>
-              <span className="font-semibold">{italian ? "Telefono 1" : "Phone 1"}:</span>{" "}
+              <span className="font-semibold">Haithem Siadoui:</span>{" "}
               {siteConfig.phones[0]}
             </li>
             <li>
-              <span className="font-semibold">{italian ? "Telefono 2" : "Phone 2"}:</span>{" "}
+              <span className="font-semibold">Adele sghaier:</span>{" "}
               {siteConfig.phones[1]}
             </li>
             <li>

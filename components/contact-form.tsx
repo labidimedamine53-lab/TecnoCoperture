@@ -122,7 +122,7 @@ export function ContactForm({ locale }: ContactFormProps) {
 
             <div className="space-y-2">
               <Label htmlFor="citta">{italian ? "Citta" : "City"}</Label>
-              <Input id="citta" placeholder={italian ? "Milano" : "Milan"} {...register("citta")} />
+              <Input id="citta" placeholder={italian ? "Modena " : "Modena"} {...register("citta")} />
               {errors.citta ? <p className="text-xs text-red-600">{errors.citta.message}</p> : null}
             </div>
           </div>
